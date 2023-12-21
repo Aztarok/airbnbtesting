@@ -15,9 +15,12 @@ export default async function Page() {
     const { data: todos, error } = await readTodo();
     return (
         <div className="flex justify-center items-center h-screen">
-            <div className="w-96 space-y-5">
-                <SignOut />
-                <CreateForm />
+            <div className="w-1/2 h-1/2 space-y-5">
+                <div className="flex gap-5 p-5 rounded-xl bg-slate-300">
+                    <CreateForm />
+
+                    <SignOut />
+                </div>
 
                 {todos?.map((todo, index) => {
                     const deleteTodo = deleteTodoById.bind(null, todo.id);

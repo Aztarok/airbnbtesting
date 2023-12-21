@@ -53,7 +53,7 @@ export default function RegisterForm() {
             if (error?.message) {
                 toast({
                     variant: "destructive",
-                    title: "You submitted the following values:",
+                    title: "Error:",
                     description: (
                         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
                             <code className="text-white">{error.message}</code>
@@ -62,7 +62,6 @@ export default function RegisterForm() {
                 });
             } else {
                 toast({
-                    title: "You submitted the following values:",
                     description: (
                         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
                             <code className="text-white">

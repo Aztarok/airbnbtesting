@@ -60,14 +60,16 @@ export default function CreateForm() {
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="w-full space-y-6"
+                className="w-96 mx-auto space-y-6"
             >
                 <FormField
                     control={form.control}
                     name="title"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Title</FormLabel>
+                            <FormLabel className="text-2xl font-bold text-zinc-800">
+                                Title
+                            </FormLabel>
                             <FormControl>
                                 <Input
                                     placeholder="todo title"
