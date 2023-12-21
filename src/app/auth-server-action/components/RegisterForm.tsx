@@ -1,9 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { z } from "zod";
-import { signUpwithEmailAndPassword } from "../actions";
-import { toast } from "../../../components/ui/use-toast";
+import { Button } from "../../../components/ui/button";
 import {
     Form,
     FormControl,
@@ -13,9 +13,10 @@ import {
     FormMessage
 } from "../../../components/ui/form";
 import { Input } from "../../../components/ui/input";
-import { Button } from "../../../components/ui/button";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { toast } from "../../../components/ui/use-toast";
 import { cn } from "../../../lib/utils";
+import { signUpwithEmailAndPassword } from "../actions";
+import { redirect } from "next/navigation";
 
 const FormSchema = z
     .object({
@@ -70,6 +71,7 @@ export default function RegisterForm() {
                         </pre>
                     )
                 });
+                return redirect("/auth-server-action");
             }
         });
     }
