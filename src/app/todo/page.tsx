@@ -15,7 +15,7 @@ export default async function Page() {
     const { data: todos, error } = await readTodo();
     return (
         <div className="flex justify-center items-center h-screen">
-            <div className="w-1/2 h-1/2 space-y-5">
+            <div className="w-1/2 h-1/2 space-y-5 text-black">
                 <div className="flex gap-5 p-5 rounded-xl bg-slate-300">
                     <CreateForm />
 
@@ -30,10 +30,14 @@ export default async function Page() {
                         !todo.completed
                     );
                     return (
-                        <div key={index} className="flex items-center gap-6">
+                        <div
+                            key={index}
+                            className="flex items-center gap-6  text-blue-500"
+                        >
                             <h1
                                 className={cn({
-                                    "line-through": todo.completed
+                                    "line-through decoration-white":
+                                        todo.completed
                                 })}
                             >
                                 {todo.title}

@@ -13,6 +13,15 @@ export default async function createSupabaseServerClient() {
             cookies: {
                 get(name: string) {
                     return cookieStore.get(name)?.value;
+                    // const value = cookieStore.get(name)?.value;
+                    // if (name.endsWith("-code-verifier") || value) {
+                    //     return value;
+                    // }
+                    // const chunk = combineChunks(
+                    //     name,
+                    //     (chunks) => cookieStore.get(chunks)?.value
+                    // );
+                    // return chunk ?? null;
                 },
                 set(name: string, value: string, options: CookieOptions) {
                     cookieStore.set({ name, value, ...options });

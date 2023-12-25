@@ -8,7 +8,8 @@ const SignOut = () => {
         "use server";
         const supabase = await createSupabaseServerClient();
         await supabase.auth.signOut();
-        redirect("/auth-server-action");
+        // redirect("/auth-server-action");
+        redirect("/logout");
     };
     return (
         <form action={Logout}>
