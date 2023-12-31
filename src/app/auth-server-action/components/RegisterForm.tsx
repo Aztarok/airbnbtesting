@@ -94,6 +94,7 @@ export default function RegisterForm() {
                                     {...field}
                                     type="email"
                                     onChange={field.onChange}
+                                    className="text-black font-medium"
                                 />
                             </FormControl>
                             <FormMessage />
@@ -112,6 +113,7 @@ export default function RegisterForm() {
                                     {...field}
                                     type="password"
                                     onChange={field.onChange}
+                                    className="text-black font-medium"
                                 />
                             </FormControl>
                             <FormMessage />
@@ -130,6 +132,7 @@ export default function RegisterForm() {
                                     {...field}
                                     type="password"
                                     onChange={field.onChange}
+                                    className="text-black font-medium"
                                 />
                             </FormControl>
                             <FormMessage />

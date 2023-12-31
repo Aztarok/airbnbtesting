@@ -1,12 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { z } from "zod";
-import {
-    signInwithEmailAndPassword,
-    signUpwithEmailAndPassword
-} from "../actions";
-import { toast } from "../../../components/ui/use-toast";
+import { Button } from "../../../components/ui/button";
 import {
     Form,
     FormControl,
@@ -16,9 +13,9 @@ import {
     FormMessage
 } from "../../../components/ui/form";
 import { Input } from "../../../components/ui/input";
-import { Button } from "../../../components/ui/button";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { toast } from "../../../components/ui/use-toast";
 import { cn } from "../../../lib/utils";
+import { signInwithEmailAndPassword } from "../actions";
 
 const FormSchema = z.object({
     email: z.string().email(),
@@ -86,6 +83,7 @@ export default function SignInForm() {
                                     {...field}
                                     type="email"
                                     onChange={field.onChange}
+                                    className="text-black font-medium"
                                 />
                             </FormControl>
                             <FormMessage />
@@ -104,6 +102,7 @@ export default function SignInForm() {
                                     {...field}
                                     type="password"
                                     onChange={field.onChange}
+                                    className="text-black font-medium"
                                 />
                             </FormControl>
                             <FormMessage />
