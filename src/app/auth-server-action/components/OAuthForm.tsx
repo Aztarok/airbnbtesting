@@ -18,25 +18,12 @@ export default function OAuthForm() {
             }
         });
     };
-    const loginWithGithub = () => {
-        supabase.auth.signInWithOAuth({
-            provider: "github",
-            options: {
-                redirectTo: `${location.origin}/auth-server-action/callback`
-            }
-        });
-    };
 
     return (
         <>
             <div>
                 <Button onClick={loginWithGoogle} className="w-full">
                     Login with Google
-                </Button>
-            </div>
-            <div>
-                <Button onClick={loginWithGithub} className="w-full">
-                    Login with Github
                 </Button>
             </div>
         </>

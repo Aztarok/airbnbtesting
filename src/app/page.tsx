@@ -1,5 +1,4 @@
 import readUserSession from "@/lib/actions";
-import { redirect } from "next/navigation";
 
 interface User {
     id: string;
@@ -34,48 +33,61 @@ function updateUserMetadata(
     propertyName: string,
     propertyValue: any
 ): User {
-    const isPropertyPresent = user.user_metadata.hasOwnProperty(propertyName);
-    // Update user_metadata with the specified property name and value
-    user.user_metadata = {
-        ...user.user_metadata,
-        [propertyName]: !isPropertyPresent
-            ? propertyValue
-            : user.user_metadata[propertyName]
-    };
+    if (user) {
+        user.user_metadata = {
+            ...user.user_metadata,
+            [propertyName]: user.user_metadata.hasOwnProperty(propertyName)
+                ? user.user_metadata[propertyName]
+                : propertyValue
+        };
+    }
 
     return user;
 }
 
+function getUserMetadata(
+    user: User | undefined,
+    propertyName: string
+): any | undefined {
+    return user?.user_metadata?.hasOwnProperty(propertyName)
+        ? user.user_metadata[propertyName]
+        : undefined;
+}
+
 export default async function Home() {
     const { data } = await readUserSession();
-    // console.log(data);
-    let userObject = "";
-    if (!data.session?.user) {
-        console.log("wow");
-    } else {
-        const user = data.session?.user!;
+    const user = data.session?.user;
+    let keyValueArray: string[] = [];
+    let user_name = "";
+    let email = "";
+    let avatar_url = "";
+
+    if (user) {
         updateUserMetadata(user, "avatar_url", "someValue");
-        userObject = JSON.stringify(user.user_metadata);
+        const jsonObject = JSON.parse(JSON.stringify(user.user_metadata));
+        keyValueArray = Object.entries(jsonObject).map(
+            ([key, value]) => `${key}: ${value}`
+        );
+        console.log(keyValueArray);
+        user_name =
+            getUserMetadata(user, "user_name") ||
+            getUserMetadata(user, "full_name") ||
+            "blank";
+        email = getUserMetadata(user, "email");
+        avatar_url = getUserMetadata(user, "avatar_url") || "";
     }
 
-    // const supabase = await createSupabaseServerClient();
-    // const {
-    //     data: { user }
-    // } = await supabase.auth.getUser();
-    // console.log(user);
-    // if (!user) {
-    //     redirect("/auth-server-action");
-    // }
     return (
         <main className="flex min-h-screen flex-col items-center gap-4 p-1">
-            {/* <div>{user.id}</div>
-            <div>{user.aud}</div>
-            <div>{user.email}</div> */}
-            <div className="w-full flex bg-red-700">
-                <div className="">{!data ? userObject : <h1>Hello</h1>}</div>
+            <div>
+                {keyValueArray.map((str) => (
+                    <div key={str}>{str}</div>
+                ))}
             </div>
-            <div>Wow</div>
-            <div>hi</div>
+            <div>{user?.email}</div>
+            <div>{user_name}</div>
+            <div>{email}</div>
+            <div>{avatar_url}</div>
         </main>
     );
 }
