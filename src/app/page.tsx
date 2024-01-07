@@ -68,7 +68,6 @@ export default async function Home() {
         keyValueArray = Object.entries(jsonObject).map(
             ([key, value]) => `${key}: ${value}`
         );
-        console.log(keyValueArray);
         user_name =
             getUserMetadata(user, "user_name") ||
             getUserMetadata(user, "full_name") ||
@@ -79,7 +78,7 @@ export default async function Home() {
 
     return (
         <main className="flex min-h-screen flex-col items-center gap-4 p-1">
-            <div>
+            {/* <div>
                 {keyValueArray.map((str) => (
                     <div key={str}>{str}</div>
                 ))}
@@ -87,7 +86,8 @@ export default async function Home() {
             <div>{user?.email}</div>
             <div>{user_name}</div>
             <div>{email}</div>
-            <div>{avatar_url}</div>
+            <div>{avatar_url}</div> */}
+            Wow
         </main>
     );
 }
